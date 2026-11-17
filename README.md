@@ -1,4 +1,4 @@
-# Tur Home Assistant
+# Tur Home Assistant – Beta
 
 [English](README.md) | [Norsk](README.nb.md)
 
@@ -70,6 +70,16 @@ The calculation module is implemented locally and passes ten tests. Connecting i
 | APK/server package for this release | Not built |
 | End-to-end and physical phone testing | Not performed |
 
-See [active next-beta work and acceptance checks](docs/next-beta.md). This documentation describes active work, not a finished release. Inactive future ideas are excluded.
+## Leadership acceptance checks
+
+- Unique first place, tied first place and another member having a higher result.
+- Missing, stale or insufficient data produces unknown.
+- Correct local date boundaries for today, the last 7 days and the last 30 days.
+- Independent groups, metrics and comparison modes.
+- Disabled or revoked leadership sharing exports no leadership status.
+
+The calculation module has been tested locally. Sharing-control and full Home Assistant data-flow testing remain incomplete.
+
+This is the main document for active work on the current beta. Inactive future ideas are excluded.
 
 Do not post personal data, keys or logs containing secrets in public issues.
