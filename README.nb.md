@@ -1,4 +1,4 @@
-# Tur Home Assistant
+# Tur Home Assistant – beta
 
 [Norsk](README.nb.md) | [English](README.md)
 
@@ -70,6 +70,16 @@ Beregningsmodulen er kodet lokalt og passerer ti tester. Tilkoblingen til deling
 | Ferdig APK/serverpakke for denne utgaven | Ikke bygget |
 | Ende-til-ende-test og fysisk telefon | Ikke utført |
 
-Se [aktivt arbeid og testkrav for neste beta](docs/next-beta.md). Dokumentasjonen beskriver aktivt arbeid, ikke en ferdig leveranse. Inaktive fremtidsideer er ikke med.
+## Testkrav for lederstatus
+
+- Entydig førsteplass, delt førsteplass og at andre har høyere resultat.
+- Manglende, gamle eller utilstrekkelige data gir ukjent.
+- Riktige lokale datogrenser for i dag, siste 7 og siste 30 dager.
+- Uavhengige grupper, målinger og sammenligningsmåter.
+- Avslått eller tilbakekalt lederdeling gir ingen eksport av lederstatus.
+
+Beregningsdelen er testet lokalt. Tester av delingsvalget og hele overføringen til Home Assistant gjenstår.
+
+Dette er hoveddokumentet for aktivt arbeid i inneværende beta. Inaktive fremtidsideer er ikke med.
 
 Ikke legg persondata, nøkler eller logger med hemmeligheter i offentlige feilrapporter.
