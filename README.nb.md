@@ -1,85 +1,67 @@
-# Tur Home Assistant – beta
+# Tur for Home Assistant — Beta
 
-[Norsk](README.nb.md) | [English](README.md)
+[English](README.md) | [Norsk](README.nb.md)
 
-> **BETA – aktiv utvikling. Ikke et gjennomtestet produkt. Ingen installerbar integrasjon er publisert ennå.**
+> **BETA — under utvikling, ikke et gjennomtestet produkt. Krever Tur Android 0.20 B8 og server oppdatert med B8-pakken.**
 
-Tur-integrasjonen skal vise dine egne, godkjente aktivitetstall i Home Assistant. Den utvikles sammen med neste beta av [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).
+Vis egne godkjente aktivitetstall og lederstatus fra Tur i Home Assistant. Integrasjonen leser via Tur-serveren; du trenger ikke åpne hjemmenettet for inngående trafikk.
 
-## Ikonoversikt
-
-Symbolene gjenbruker appens ikonformer og farger.
-
-| Ikon fra appen | Funksjon i integrasjonen |
+| Appikon | Funksjon |
 |---|---|
-| <img src="docs/icons/key.svg" width="56" height="56" alt="Nøkkel"> | **Nøkkel og tilgang** – opprett, kopier og trekk tilbake egen delingsnøkkel. |
-| <img src="docs/icons/sharing.svg" width="56" height="56" alt="Deling"> | **Deling** – velg hvilke av dine aktivitetstall som kan leses. |
-| <img src="docs/icons/groups.svg" width="56" height="56" alt="Grupper"> | **Grupper** – egen lederstatus per gruppe; andre medlemmers navn og tall eksporteres ikke. |
-| <img src="docs/icons/target.svg" width="56" height="56" alt="Mål"> | **Mål og ledelse** – måloppnåelse og målt aktivitet for dag, 7 og 30 dager. |
-| <img src="docs/icons/privacy.svg" width="56" height="56" alt="Personvern"> | **Personvern** – avgrenset lesetilgang, uten GPS og personnavn. |
+| <img src="docs/icons/key.svg" width="56" height="56" alt="Nøkkel"> | Opprett, kopier, erstatt eller trekk tilbake egen delingsnøkkel. |
+| <img src="docs/icons/sharing.svg" width="56" height="56" alt="Deling"> | Velg hvilke av dine egne tall som kan leses. |
+| <img src="docs/icons/groups.svg" width="56" height="56" alt="Grupper"> | Valgfri egen lederstatus, uten andres navn og tall. |
+| <img src="docs/icons/target.svg" width="56" height="56" alt="Mål"> | Måloppnåelse og målt aktivitet sammenlignes hver for seg. |
+| <img src="docs/icons/privacy.svg" width="56" height="56" alt="Personvern"> | Kun lesetilgang; ingen GPS, posisjon eller personnavn. |
 
-**Oversikten viser funksjoner under utvikling, ikke en ferdig installasjon.**
+## Kom i gang
 
-## ![Nøkkel](docs/icons/key.svg) Oppsett i betaen
+1. Oppdater Tur-serveren med B8-pakken, og installer **Tur 0.20 B8** over eksisterende Android-app. Ikke avinstaller først.
+2. Åpne **Grupper og deling → Home Assistant** i Tur. Appen spør ved behov om oppretting/tilkobling av Tur-konto; ingen gruppe er nødvendig.
+3. Velg tall og trykk **Opprett nøkkel**. Kopier nøkkelen og behandle den som et passord.
+4. Under [egendefinerte repoer i HACS](https://hacs.dev/docs/faq/custom_repositories/) legger du til `https://github.com/trondtorsoe/Tur---HA-integrasjon`, kategori **Integration**. Last ned **Tur Home Assistant (Beta)** og start Home Assistant på nytt.
+5. Velg **Innstillinger → Enheter og tjenester → Legg til integrasjon → Tur**, og lim inn nøkkelen.
 
-1. Åpne **Grupper og deling → Home Assistant** i Tur-appen.
-2. Velg hvilke data du tillater, og opprett en egen delingsnøkkel.
-3. Lim nøkkelen inn i Tur-integrasjonens oppsett i Home Assistant.
+Krever **Home Assistant 2026.11.0 eller nyere**. Alternativt kopierer du bare `custom_components/tur_activity` fra repoet til Home Assistants `config/custom_components/` og starter på nytt. Dette er en egendefinert integrasjon, ikke en integrasjon inkludert i Home Assistant Core eller standardlisten i HACS.
 
-**Dette er oppsettet som implementeres, ikke en installasjonsveiledning for en ferdig utgave.** Appens nye oppsettside og HA-klienten er ikke ferdige. Ingen MQTT-adresse eller MQTT-innlogging inngår i dette oppsettet.
+## Tall og oppdatering
 
-## Data i denne betaens omfang
-
-| Data | Betydning |
+| Sensor | Betydning |
 |---|---|
-| Skritt | Dagens egne skritt |
-| Distanse | Dagens aktivitetsdistanse i km |
-| Aktivitetstid | Dagens trenings-/aktivitetsminutter |
-| Høydemeter | Dagens stigning |
-| Aktivitetspoeng | Dagens beregnede aktivitetspoeng |
-| Måloppnåelse | Oppnådd andel av eget mål, når et mål er satt |
-| Sist oppdatert | Tidspunktet tallene gjelder for |
-| Egen lederstatus | Frivillig tilvalg, beskrevet under |
+| Skritt | Dine skritt i dag |
+| Aktivitetsdistanse | Dagens aktivitetsdistanse i km |
+| Aktivitetstid | Dagens registrerte trenings-/aktivitetsminutter |
+| Høydemeter | Dagens kjente stigning i meter |
+| Totalpoeng | Dagens beregnede totalpoeng |
+| Måloppnåelse | Oppnåelse av eget dagsmål, begrenset til 100 %, hvis satt |
+| Sist oppdatert | Tidspunktet aktivitetstallene gjelder |
 
-## ![Mål](docs/icons/target.svg) Lederstatus
+Appen sender ved vanlig synkronisering. **Send tall nå** finnes også på Home Assistant-siden. Home Assistant leser omtrent hvert femte minutt. Transport gir ikke aktivitetskreditt. Oppsett og sensornavn støtter norsk og engelsk; Home Assistant følger eget språkvalg.
 
-Arbeidet omfatter egen status per gruppe for **i dag, siste 7 og siste 30 dager**, med **skritt, distanse, høyde, grunnpoeng og totalpoeng** som i appens grafer. Måloppnåelse og målt aktivitet beregnes separat.
+Tall som ikke er valgt, mangler, gjelder en tidligere dag eller er over seks timer gamle, blir **utilgjengelige**, ikke ferske nuller. Sist oppdatert vises fortsatt når tidspunktet finnes. Androids bakgrunnsbegrensninger og nettforbindelse kan forsinke sendingen.
 
-Status er **leder**, **delt ledelse**, **leder ikke** eller **ukjent**. Manglende eller gamle sammenligningsdata gir ukjent. Ingen andre medlemmers navn eller aktivitetstall følger med.
+## Lederstatus
 
-Beregningsmodulen er kodet lokalt og passerer ti tester. Tilkoblingen til delingsvalget og HA-sensorene er ikke ferdig.
+Aktiver **Min lederstatus per gruppe** som eget valg i Tur. Sensorene dekker **i dag, siste 7 dager og siste 30 dager**, for **skritt, distanse, høyde, grunnpoeng og totalpoeng**. Målt aktivitet summeres for perioden; måloppnåelse sammenligner snitt av dagsprosentene, separat fra målt aktivitet.
 
-## ![Personvern](docs/icons/privacy.svg) Tilgang og personvern
+Status er **leder**, **delt ledelse**, **leder ikke** eller **ukjent / utilstrekkelige data**. Gamle eller manglende sammenligningstall gir ukjent. Medlemmer uten personlige mål utelates fra målsammenligningen; mangler du selv mål, blir din målstatus ukjent.
 
-- Egen nøkkel med bare lesetilgang til valgte tall. Den er separat fra vanlig appinnlogging.
-- Oppretting, endring og tilbakekalling styres fra appkontoen.
-- Serveren lagrer en kontrollverdi av nøkkelen og kontrollerer tillatelse ved hver lesing.
-- Tilbakekalling stanser nye lesinger; allerede lagrede data hos mottakeren slettes ikke automatisk.
-- GPS-ruter, posisjon, personnavn og andre medlemmers aktivitetstall inngår ikke.
-- Gamle eller manglende data skal ikke fremstå som ferske nullverdier.
-- App- og serverkode holdes privat. Dette repoet er for HA-integrasjonen og dokumentasjon.
+Bare din status eksporteres. Grupper vises med tekniske identifikatorer i sensornavnene, uten gruppe- og personnavn; gi sensorene egne navn i Home Assistant om ønskelig. En gruppe kan opprette inntil 30 ledersensorer. Fjernede grupper eller trukket lederdeling gjør de tilhørende sensorene utilgjengelige.
 
-## Status og testing
+## Nøkler og personvern
 
-| Del | Bekreftet status |
-|---|---|
-| Serverens nøkkeltilgang | Kodet lokalt; ti nye tilgangstester passerer |
-| Eksisterende serverfunksjoner | Alle 205 serverkontroller passerte før ledermodulen ble lagt til |
-| Lederberegning | Ti nye beregningstester passerer |
-| Android-oppsett og HA-klient | Ikke ferdig |
-| Ferdig APK/serverpakke for denne utgaven | Ikke bygget |
-| Ende-til-ende-test og fysisk telefon | Ikke utført |
+- Nøkkelen gir bare lesetilgang til valgte tall, separat fra vanlig innlogging i appen.
+- Serveren lagrer en kontrollverdi av nøkkelen og sjekker tillatelsen ved hver lesing.
+- Endre valg eller trekk tilbake tilgangen på appens Home Assistant-side. Endringer gjelder fra neste forespørsel.
+- En ny nøkkel gjør den gamle ugyldig umiddelbart. Bruk **Konfigurer på nytt** på eksisterende integrasjon for å lime inn ny nøkkel; innloggingsfeil tilbyr også ny godkjenning.
+- Allerede lagrede tall i Home Assistant slettes ikke automatisk ved tilbakekall.
+- Nøkler sendes i HTTPS-autorisasjonshodet, aldri i nettadressen. Ikke legg nøkler, GPS-spor eller personlige logger i offentlige feilrapporter.
+- Android- og serverkildekode er privat. Bare kildekoden til Home Assistant-integrasjonen publiseres her.
 
-## Testkrav for lederstatus
+## Kontroller og begrensninger
 
-- Entydig førsteplass, delt førsteplass og at andre har høyere resultat.
-- Manglende, gamle eller utilstrekkelige data gir ukjent.
-- Riktige lokale datogrenser for i dag, siste 7 og siste 30 dager.
-- Uavhengige grupper, målinger og sammenligningsmåter.
-- Avslått eller tilbakekalt lederdeling gir ingen eksport av lederstatus.
+B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Sju integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering er kontrollert.
 
-Beregningsdelen er testet lokalt. Tester av delingsvalget og hele overføringen til Home Assistant gjenstår.
+Dette er automatiske kontroller. Installasjon på en testers fysiske telefon og Home Assistant-installasjon gjenstår å kontrollere. VPS-en må oppdateres med B8-pakken før det nye endepunktet kan brukes. Stabile 0.20-brukere tvinges ikke til å oppdatere for denne integrasjonen.
 
-Dette er hoveddokumentet for aktivt arbeid i inneværende beta. Inaktive fremtidsideer er ikke med.
-
-Ikke legg persondata, nøkler eller logger med hemmeligheter i offentlige feilrapporter.
+Se også [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).

@@ -1,0 +1,331 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Tur",
+        "description": "BETA – not thoroughly tested. Create a dedicated key in Tur → Groups and sharing → Home Assistant. Only your selected figures are shared; GPS and personal names are excluded.",
+        "data": {
+          "sharing_key": "Sharing key"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Connect to Tur",
+        "description": "BETA – not thoroughly tested. Create a dedicated key in Tur → Groups and sharing → Home Assistant. Only your selected figures are shared; GPS and personal names are excluded.",
+        "data": {
+          "sharing_key": "Sharing key"
+        }
+      },
+      "reconfigure": {
+        "title": "Connect to Tur",
+        "description": "BETA – not thoroughly tested. Create a dedicated key in Tur → Groups and sharing → Home Assistant. Only your selected figures are shared; GPS and personal names are excluded.",
+        "data": {
+          "sharing_key": "Sharing key"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "The key is invalid or revoked. Create a replacement in the Tur app.",
+      "cannot_connect": "Could not retrieve Tur data. Check the network and server update."
+    },
+    "abort": {
+      "already_configured": "This key is already configured.",
+      "reauth_successful": "Key updated.",
+      "reconfigure_successful": "Configuration updated."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "steps": {
+        "name": "Steps today"
+      },
+      "distance_km": {
+        "name": "Activity distance today"
+      },
+      "activity_minutes": {
+        "name": "Activity minutes today"
+      },
+      "ascent_m": {
+        "name": "Elevation gain today"
+      },
+      "points": {
+        "name": "Total points today"
+      },
+      "goal_percent": {
+        "name": "Goal achievement today"
+      },
+      "updated": {
+        "name": "Last updated"
+      },
+      "leadership_steps_measured_1": {
+        "name": "Group {group}: steps · today · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_steps_measured_7": {
+        "name": "Group {group}: steps · last 7 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_steps_measured_30": {
+        "name": "Group {group}: steps · last 30 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_steps_goal_1": {
+        "name": "Group {group}: steps · today · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_steps_goal_7": {
+        "name": "Group {group}: steps · last 7 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_steps_goal_30": {
+        "name": "Group {group}: steps · last 30 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_meters_measured_1": {
+        "name": "Group {group}: distance · today · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_meters_measured_7": {
+        "name": "Group {group}: distance · last 7 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_meters_measured_30": {
+        "name": "Group {group}: distance · last 30 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_meters_goal_1": {
+        "name": "Group {group}: distance · today · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_meters_goal_7": {
+        "name": "Group {group}: distance · last 7 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_meters_goal_30": {
+        "name": "Group {group}: distance · last 30 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_ascent_measured_1": {
+        "name": "Group {group}: elevation · today · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_ascent_measured_7": {
+        "name": "Group {group}: elevation · last 7 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_ascent_measured_30": {
+        "name": "Group {group}: elevation · last 30 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_ascent_goal_1": {
+        "name": "Group {group}: elevation · today · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_ascent_goal_7": {
+        "name": "Group {group}: elevation · last 7 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_ascent_goal_30": {
+        "name": "Group {group}: elevation · last 30 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_activity_points_measured_1": {
+        "name": "Group {group}: base points · today · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_activity_points_measured_7": {
+        "name": "Group {group}: base points · last 7 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_activity_points_measured_30": {
+        "name": "Group {group}: base points · last 30 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_activity_points_goal_1": {
+        "name": "Group {group}: base points · today · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_activity_points_goal_7": {
+        "name": "Group {group}: base points · last 7 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_activity_points_goal_30": {
+        "name": "Group {group}: base points · last 30 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_total_points_measured_1": {
+        "name": "Group {group}: total points · today · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_total_points_measured_7": {
+        "name": "Group {group}: total points · last 7 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_total_points_measured_30": {
+        "name": "Group {group}: total points · last 30 days · measured activity",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_total_points_goal_1": {
+        "name": "Group {group}: total points · today · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_total_points_goal_7": {
+        "name": "Group {group}: total points · last 7 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      },
+      "leadership_total_points_goal_30": {
+        "name": "Group {group}: total points · last 30 days · goal achievement",
+        "state": {
+          "leading": "Leading",
+          "tied_lead": "Tied lead",
+          "not_leading": "Not leading",
+          "insufficient_data": "Unknown"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Koble til Tur",
+        "description": "BETA – ikke gjennomtestet. Opprett en egen nøkkel i Tur → Grupper og deling → Home Assistant. Bare egne valgte tall deles; GPS og navn er ikke med.",
+        "data": {
+          "sharing_key": "Delingsnøkkel"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Koble til Tur",
+        "description": "BETA – ikke gjennomtestet. Opprett en egen nøkkel i Tur → Grupper og deling → Home Assistant. Bare egne valgte tall deles; GPS og navn er ikke med.",
+        "data": {
+          "sharing_key": "Delingsnøkkel"
+        }
+      },
+      "reconfigure": {
+        "title": "Koble til Tur",
+        "description": "BETA – ikke gjennomtestet. Opprett en egen nøkkel i Tur → Grupper og deling → Home Assistant. Bare egne valgte tall deles; GPS og navn er ikke med.",
+        "data": {
+          "sharing_key": "Delingsnøkkel"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Nøkkelen er ugyldig eller trukket tilbake. Opprett en ny i Tur-appen.",
+      "cannot_connect": "Kunne ikke hente data fra Tur. Kontroller nett og serveroppdatering."
+    },
+    "abort": {
+      "already_configured": "Denne nøkkelen er allerede lagt til.",
+      "reauth_successful": "Nøkkelen er oppdatert.",
+      "reconfigure_successful": "Oppsettet er oppdatert."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "steps": {
+        "name": "Skritt i dag"
+      },
+      "distance_km": {
+        "name": "Aktivitetsdistanse i dag"
+      },
+      "activity_minutes": {
+        "name": "Aktivitetsminutter i dag"
+      },
+      "ascent_m": {
+        "name": "Høydemeter i dag"
+      },
+      "points": {
+        "name": "Totalpoeng i dag"
+      },
+      "goal_percent": {
+        "name": "Måloppnåelse i dag"
+      },
+      "updated": {
+        "name": "Sist oppdatert"
+      },
+      "leadership_steps_measured_1": {
+        "name": "Gruppe {group}: skritt · i dag · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_steps_measured_7": {
+        "name": "Gruppe {group}: skritt · siste 7 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_steps_measured_30": {
+        "name": "Gruppe {group}: skritt · siste 30 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_steps_goal_1": {
+        "name": "Gruppe {group}: skritt · i dag · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_steps_goal_7": {
+        "name": "Gruppe {group}: skritt · siste 7 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_steps_goal_30": {
+        "name": "Gruppe {group}: skritt · siste 30 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_meters_measured_1": {
+        "name": "Gruppe {group}: distanse · i dag · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_meters_measured_7": {
+        "name": "Gruppe {group}: distanse · siste 7 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_meters_measured_30": {
+        "name": "Gruppe {group}: distanse · siste 30 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_meters_goal_1": {
+        "name": "Gruppe {group}: distanse · i dag · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_meters_goal_7": {
+        "name": "Gruppe {group}: distanse · siste 7 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_meters_goal_30": {
+        "name": "Gruppe {group}: distanse · siste 30 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_ascent_measured_1": {
+        "name": "Gruppe {group}: høyde · i dag · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_ascent_measured_7": {
+        "name": "Gruppe {group}: høyde · siste 7 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_ascent_measured_30": {
+        "name": "Gruppe {group}: høyde · siste 30 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_ascent_goal_1": {
+        "name": "Gruppe {group}: høyde · i dag · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_ascent_goal_7": {
+        "name": "Gruppe {group}: høyde · siste 7 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_ascent_goal_30": {
+        "name": "Gruppe {group}: høyde · siste 30 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_activity_points_measured_1": {
+        "name": "Gruppe {group}: grunnpoeng · i dag · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_activity_points_measured_7": {
+        "name": "Gruppe {group}: grunnpoeng · siste 7 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_activity_points_measured_30": {
+        "name": "Gruppe {group}: grunnpoeng · siste 30 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_activity_points_goal_1": {
+        "name": "Gruppe {group}: grunnpoeng · i dag · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_activity_points_goal_7": {
+        "name": "Gruppe {group}: grunnpoeng · siste 7 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_activity_points_goal_30": {
+        "name": "Gruppe {group}: grunnpoeng · siste 30 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_total_points_measured_1": {
+        "name": "Gruppe {group}: totalpoeng · i dag · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_total_points_measured_7": {
+        "name": "Gruppe {group}: totalpoeng · siste 7 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_total_points_measured_30": {
+        "name": "Gruppe {group}: totalpoeng · siste 30 dager · målt aktivitet",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_total_points_goal_1": {
+        "name": "Gruppe {group}: totalpoeng · i dag · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_total_points_goal_7": {
+        "name": "Gruppe {group}: totalpoeng · siste 7 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      },
+      "leadership_total_points_goal_30": {
+        "name": "Gruppe {group}: totalpoeng · siste 30 dager · måloppnåelse",
+        "state": {
+          "leading": "Leder",
+          "tied_lead": "Delt ledelse",
+          "not_leading": "Leder ikke",
+          "insufficient_data": "Ukjent"
+        }
+      }
+    }
+  }
+}
