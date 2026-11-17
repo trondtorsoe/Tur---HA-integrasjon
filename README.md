@@ -6,6 +6,20 @@
 
 The Tur integration is being developed to show your own approved activity figures in Home Assistant, alongside the next beta of [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).
 
+## Icon guide
+
+These symbols reuse the app's icon shapes and colours.
+
+| App icon | Integration feature |
+|---|---|
+| <img src="docs/icons/key.svg" width="56" height="56" alt="Key"> | **Key and access** – create, copy and revoke a dedicated sharing key. |
+| <img src="docs/icons/sharing.svg" width="56" height="56" alt="Sharing"> | **Sharing** – choose which of your activity figures can be read. |
+| <img src="docs/icons/groups.svg" width="56" height="56" alt="Groups"> | **Groups** – your own leadership status per group; other members' names and figures are not exported. |
+| <img src="docs/icons/target.svg" width="56" height="56" alt="Goals"> | **Goals and leadership** – goal achievement and measured activity for today, 7 and 30 days. |
+| <img src="docs/icons/privacy.svg" width="56" height="56" alt="Privacy"> | **Privacy** – limited read-only access, without GPS or personal names. |
+
+**This guide describes features under development, not an available installation.**
+
 ## ![Key](docs/icons/key.svg) Beta setup
 
 1. Open **Groups and sharing → Home Assistant** in the Tur app.
