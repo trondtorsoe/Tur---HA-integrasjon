@@ -2,7 +2,7 @@
 
 [English](README.md) | [Norsk](README.nb.md)
 
-> **BETA — active development, not a thoroughly tested product. Requires Tur Android 0.20 B8 and a server updated with the B8 package.**
+> **BETA — active development, not a thoroughly tested product. The current stable app/server is Tur 0.21. Integration 0.20.2b3 has been tested with 0.21. Basic sharing remains compatible with B8; automatic group names require a B9 or newer server.**
 
 Show your own approved Tur activity figures and leadership status in Home Assistant. The integration reads through the Tur server; no inbound connection to your home network is needed.
 
@@ -16,7 +16,7 @@ Show your own approved Tur activity figures and leadership status in Home Assist
 
 ## Setup
 
-1. Update the Tur server with the B8 package, then install **Tur 0.20 B8** over your existing Android app. Do not uninstall first.
+1. Use current stable **Tur 0.21** and an updated Tur server. [Download the Android app](https://tur.fjernkontroll.eu/Tur.apk), or use its update check. Install over the existing app; do not uninstall first. Administrators can select the signed `tur-oppdater.py` under **Administration → Server update** in the phone app; the PC script is an alternative.
 2. In Tur, open **Groups and sharing → Home Assistant**. If needed, the app asks you to create/connect your Tur account; no group is required.
 3. Select your figures and press **Create key**. Copy the key and treat it as a password.
 4. Open **Settings → Marketplace → Add from link**. Enter `https://github.com/trondtorsoe/Tur---HA-integrasjon` and select **Add**. If asked, choose **Integration**. The Marketplace guides you through connecting GitHub if required. Open **Tur Home Assistant (Beta)** and select **Install**. Follow any restart prompt.
@@ -26,7 +26,7 @@ Requires **Home Assistant 2026.11.0 or newer**. Alternatively, copy only `custom
 
 ## Version and icon
 
-The Home Assistant integration remains **beta**. Version **0.20.2b3** displays the integration version under **Device info → Firmware** and ships Tur's footprints-and-dotted-line icon. This is the integration version, not the Android version. Android B8 and the existing server remain compatible.
+The Home Assistant integration remains **beta**. Version **0.20.2b3** displays the integration version under **Device info → Firmware** and ships Tur's footprints-and-dotted-line icon. This is the integration version, not the Android version. It has been tested with stable Android/server 0.21. Basic sharing remains compatible with B8; automatic group names require a B9 or newer server. A stable Android release does not change the integration's beta status.
 
 After updating or downloading again through Marketplace, restart Home Assistant to load the new code. Refresh the page if your browser still shows the old icon. Do not delete the integration, key or sensors.
 
@@ -72,10 +72,10 @@ The new entity-creation behaviour requires only this Home Assistant integration 
 
 ## Verification and limitations
 
-B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Eleven integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. The b3 checks include empty first installation, valid zeros versus missing values, later sensor creation, partial comparison history, no duplicate IDs, group renames, and restoration of registered unavailable sensors on reload. APK signing and alignment are verified.
+Stable Tur 0.21 passed **217 server tests**, **14 Android database/menu tests** and Android Java regression checks covering 129 search entries and all 56 tips. Eleven integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the 0.21 Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. Checks include empty first installation, valid zeros versus missing values, later sensor creation, partial comparison history, no duplicate IDs, group renames, and restoration of registered unavailable sensors on reload. APK signing and alignment and server-package signing were verified. These checks do not replace physical testing of every feature.
 
 **Confirmed in real use on 17 November 2026:** A tester receives ongoing figures from their Android app through the Tur server into their Home Assistant. Their sensor list displays steps, distance, activity time, ascent, points, goal achievement and update time. Today's leadership is received for several metrics, including Leading, Not leading and Tied lead, separately for goal achievement and measured activity.
 
-Also confirmed in real use: the icon and app group names, key replacement, rejection of the previous key, and explicit revocation. Agreement with Tur's figures, 7/30-day comparisons, sharing-choice changes, automatic creation when missing data arrives, entity/history preservation across restart or group rename, and local group aliases have not yet been manually confirmed by the tester. Automated checks for several of these are described above. Existing stable 0.20 users are not forced to update.
+Also confirmed in real use: the icon and app group names, key replacement, rejection of the previous key, explicit revocation, agreement with Tur's figures, and sharing-choice changes. The user also confirmed that new unknown placeholder entities did not appear. Manual confirmation of 7/30-day comparisons, automatic creation when missing data arrives, entity/history preservation across restart or group rename, and local group aliases remains outstanding. Automated checks for several of these are described above. Existing stable 0.20 users can upgrade to 0.21 without uninstalling.
 
 See also [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).
