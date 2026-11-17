@@ -6,6 +6,20 @@
 
 Tur-integrasjonen skal vise dine egne, godkjente aktivitetstall i Home Assistant. Den utvikles sammen med neste beta av [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).
 
+## Ikonoversikt
+
+Symbolene gjenbruker appens ikonformer og farger.
+
+| Ikon fra appen | Funksjon i integrasjonen |
+|---|---|
+| <img src="docs/icons/key.svg" width="56" height="56" alt="Nøkkel"> | **Nøkkel og tilgang** – opprett, kopier og trekk tilbake egen delingsnøkkel. |
+| <img src="docs/icons/sharing.svg" width="56" height="56" alt="Deling"> | **Deling** – velg hvilke av dine aktivitetstall som kan leses. |
+| <img src="docs/icons/groups.svg" width="56" height="56" alt="Grupper"> | **Grupper** – egen lederstatus per gruppe; andre medlemmers navn og tall eksporteres ikke. |
+| <img src="docs/icons/target.svg" width="56" height="56" alt="Mål"> | **Mål og ledelse** – måloppnåelse og målt aktivitet for dag, 7 og 30 dager. |
+| <img src="docs/icons/privacy.svg" width="56" height="56" alt="Personvern"> | **Personvern** – avgrenset lesetilgang, uten GPS og personnavn. |
+
+**Oversikten viser funksjoner under utvikling, ikke en ferdig installasjon.**
+
 ## ![Nøkkel](docs/icons/key.svg) Oppsett i betaen
 
 1. Åpne **Grupper og deling → Home Assistant** i Tur-appen.
