@@ -19,10 +19,10 @@ Vis egne godkjente aktivitetstall og lederstatus fra Tur i Home Assistant. Integ
 1. Oppdater Tur-serveren med B8-pakken, og installer **Tur 0.20 B8** over eksisterende Android-app. Ikke avinstaller først.
 2. Åpne **Grupper og deling → Home Assistant** i Tur. Appen spør ved behov om oppretting/tilkobling av Tur-konto; ingen gruppe er nødvendig.
 3. Velg tall og trykk **Opprett nøkkel**. Kopier nøkkelen og behandle den som et passord.
-4. Under [egendefinerte repoer i HACS](https://hacs.dev/docs/faq/custom_repositories/) legger du til `https://github.com/trondtorsoe/Tur---HA-integrasjon`, kategori **Integration**. Last ned **Tur Home Assistant (Beta)** og start Home Assistant på nytt.
+4. Åpne **Innstillinger → Markedsplass → Legg til fra lenke** (engelsk: **Settings → Marketplace → Add from link**). Lim inn `https://github.com/trondtorsoe/Tur---HA-integrasjon` og velg **Legg til**. Velg **Integrasjon** hvis du blir spurt. Markedsplassen veileder deg gjennom GitHub-tilkobling ved behov. Åpne **Tur Home Assistant (Beta)** og velg **Installer**. Følg eventuell beskjed om omstart.
 5. Velg **Innstillinger → Enheter og tjenester → Legg til integrasjon → Tur**, og lim inn nøkkelen.
 
-Krever **Home Assistant 2026.11.0 eller nyere**. Alternativt kopierer du bare `custom_components/tur_activity` fra repoet til Home Assistants `config/custom_components/` og starter på nytt. Dette er en egendefinert integrasjon, ikke en integrasjon inkludert i Home Assistant Core eller standardlisten i HACS.
+Krever **Home Assistant 2026.11.0 eller nyere**. Alternativt kopierer du bare `custom_components/tur_activity` fra repoet til Home Assistants `config/custom_components/` og starter på nytt. Markedsplassen er innebygd i Home Assistant 2026.11; du trenger ikke installere HACS separat. Tur legges foreløpig til fra repo-lenken og er ikke oppført i standardkatalogen. [Offisiell veiledning for Markedsplassen](https://www.home-assistant.io/integrations/marketplace/#custom-repositories).
 
 ## Tall og oppdatering
 

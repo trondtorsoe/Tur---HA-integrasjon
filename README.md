@@ -19,10 +19,10 @@ Show your own approved Tur activity figures and leadership status in Home Assist
 1. Update the Tur server with the B8 package, then install **Tur 0.20 B8** over your existing Android app. Do not uninstall first.
 2. In Tur, open **Groups and sharing → Home Assistant**. If needed, the app asks you to create/connect your Tur account; no group is required.
 3. Select your figures and press **Create key**. Copy the key and treat it as a password.
-4. In [HACS custom repositories](https://hacs.dev/docs/faq/custom_repositories/), add `https://github.com/trondtorsoe/Tur---HA-integrasjon` with category **Integration**. Download **Tur Home Assistant (Beta)** and restart Home Assistant.
+4. Open **Settings → Marketplace → Add from link**. Enter `https://github.com/trondtorsoe/Tur---HA-integrasjon` and select **Add**. If asked, choose **Integration**. The Marketplace guides you through connecting GitHub if required. Open **Tur Home Assistant (Beta)** and select **Install**. Follow any restart prompt.
 5. Open **Settings → Devices & services → Add integration → Tur**, then paste the key.
 
-Requires **Home Assistant 2026.11.0 or newer**. Alternatively, copy only `custom_components/tur_activity` from this repository to your Home Assistant `config/custom_components/` directory, then restart. The integration is a custom component, not an integration included in Home Assistant Core or a default HACS listing.
+Requires **Home Assistant 2026.11.0 or newer**. Alternatively, copy only `custom_components/tur_activity` from this repository to your Home Assistant `config/custom_components/` directory, then restart. The Marketplace is built into Home Assistant 2026.11; no separate HACS installation is needed. Tur is currently added from its repository link, not listed in the default catalog. [Official Marketplace instructions](https://www.home-assistant.io/integrations/marketplace/#custom-repositories).
 
 ## Figures and update behaviour
 
