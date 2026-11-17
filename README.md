@@ -24,6 +24,12 @@ Show your own approved Tur activity figures and leadership status in Home Assist
 
 Requires **Home Assistant 2026.11.0 or newer**. Alternatively, copy only `custom_components/tur_activity` from this repository to your Home Assistant `config/custom_components/` directory, then restart. The Marketplace is built into Home Assistant 2026.11; no separate HACS installation is needed. Tur is currently added from its repository link, not listed in the default catalog. [Official Marketplace instructions](https://www.home-assistant.io/integrations/marketplace/#custom-repositories).
 
+## Version and icon
+
+The Home Assistant integration remains **beta**. Version **0.20.2b1** displays the integration version under **Device info → Firmware** and ships Tur's footprints-and-dotted-line icon. This is the integration version, not the Android version. Android B8 and the existing server remain compatible.
+
+After updating or downloading again through Marketplace, restart Home Assistant to load the new code. Refresh the page if your browser still shows the old icon. Do not delete the integration, key or sensors.
+
 ## Figures and update behaviour
 
 | Sensor | Meaning |
@@ -66,8 +72,10 @@ Only the Home Assistant integration needs this update; no new Android app or ser
 
 ## Verification and limitations
 
-B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Eight integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. APK signing and alignment are verified.
+B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Nine integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. APK signing and alignment are verified.
 
-These are automated checks. Installation on a tester's physical phone and their Home Assistant installation still needs verification. The VPS must receive the B8 package before the new endpoint can be used. Existing stable 0.20 users are not forced to update for this integration.
+**Confirmed in real use on 17 November 2026:** A tester receives ongoing figures from their Android app through the Tur server into their Home Assistant. Their sensor list displays steps, distance, activity time, ascent, points, goal achievement and update time. Today's leadership is received for several metrics, including Leading, Not leading and Tied lead, separately for goal achievement and measured activity.
+
+This confirms transfer and display. Agreement with Tur's figures, 7/30-day comparisons, the reason for each Unknown state, sharing-choice changes, key rotation/revocation, restart and local group aliases have not yet been manually confirmed by the tester. Automated checks for several of these are described above. Existing stable 0.20 users are not forced to update.
 
 See also [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).

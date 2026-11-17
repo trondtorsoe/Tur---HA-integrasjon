@@ -24,6 +24,12 @@ Vis egne godkjente aktivitetstall og lederstatus fra Tur i Home Assistant. Integ
 
 Krever **Home Assistant 2026.11.0 eller nyere**. Alternativt kopierer du bare `custom_components/tur_activity` fra repoet til Home Assistants `config/custom_components/` og starter på nytt. Markedsplassen er innebygd i Home Assistant 2026.11; du trenger ikke installere HACS separat. Tur legges foreløpig til fra repo-lenken og er ikke oppført i standardkatalogen. [Offisiell veiledning for Markedsplassen](https://www.home-assistant.io/integrations/marketplace/#custom-repositories).
 
+## Versjon og ikon
+
+Home Assistant-integrasjonen er fortsatt **beta**. Utgave **0.20.2b1** viser integrasjonens versjon under **Enhetsinformasjon → Programvare** og bruker Tur-appens ikon med føtter og stiplet linje. Dette er integrasjonens versjon, ikke Android-versjonen. Android B8 og eksisterende server kan beholdes.
+
+Etter oppdatering eller ny nedlasting i Markedsplassen må Home Assistant startes på nytt for å laste ny kode. Last siden på nytt hvis nettleseren fortsatt viser gammelt ikon. Du trenger ikke slette integrasjonen, nøkkelen eller sensorene.
+
 ## Tall og oppdatering
 
 | Sensor | Betydning |
@@ -66,8 +72,10 @@ Dette krever bare oppdatering av Home Assistant-integrasjonen, ingen ny Android-
 
 ## Kontroller og begrensninger
 
-B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Åtte integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering er kontrollert.
+B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Ni integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering er kontrollert.
 
-Dette er automatiske kontroller. Installasjon på en testers fysiske telefon og Home Assistant-installasjon gjenstår å kontrollere. VPS-en må oppdateres med B8-pakken før det nye endepunktet kan brukes. Stabile 0.20-brukere tvinges ikke til å oppdatere for denne integrasjonen.
+**Bekreftet i faktisk bruk 17.11.2026:** En tester mottar løpende tall fra sin Android-app via Tur-serveren til sin Home Assistant. Sensorlisten viser skritt, distanse, aktivitetstid, høyde, poeng, måloppnåelse og oppdateringstid. Dagens lederstatus mottas for flere målinger, med Leder, Leder ikke og Delt ledelse, og måloppnåelse vises separat fra målt aktivitet.
+
+Dette bekrefter overføring og visning. Samsvar med tallene i Tur, sammenligninger for 7/30 dager, årsaken til hver Ukjent-status, endrede delingsvalg, nøkkelbytte/tilbakekall, omstart og lokale gruppenavn er ikke manuelt bekreftet av testeren ennå. Automatiske kontroller av flere av disse funksjonene er omtalt ovenfor. Stabile 0.20-brukere tvinges ikke til å oppdatere.
 
 Se også [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).

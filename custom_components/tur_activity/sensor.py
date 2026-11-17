@@ -6,7 +6,7 @@ from homeassistant.const import UnitOfLength,UnitOfTime,PERCENTAGE
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.core import callback
-from .const import DOMAIN,FIELDS
+from .const import DOMAIN,FIELDS,VERSION
 
 SPECS={
  'steps':(None,'mdi:shoe-print',None),
@@ -49,7 +49,7 @@ class TurBase(CoordinatorEntity,SensorEntity):
     _attr_has_entity_name=True
     def __init__(self,coordinator,entry):
         super().__init__(coordinator)
-        self._attr_device_info=DeviceInfo(identifiers={(DOMAIN,entry.entry_id)},name='Tur',manufacturer='Tur',model='Activity Tracker')
+        self._attr_device_info=DeviceInfo(identifiers={(DOMAIN,entry.entry_id)},name='Tur',manufacturer='Tur',model='Activity Tracker (Beta)',sw_version=VERSION)
 
 class TurSensor(TurBase):
     def __init__(self,coordinator,entry,key):
