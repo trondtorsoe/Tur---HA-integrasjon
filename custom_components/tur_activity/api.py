@@ -49,6 +49,8 @@ def validate_payload(data):
         for group in leadership['groups']:
             if not isinstance(group,dict) or not isinstance(group.get('group'),str) or len(group['group'])>100 or not isinstance(group.get('results'),list):
                 raise CannotConnect
+            if 'name' in group and (not isinstance(group['name'],str) or len(group['name'])>1000):
+                raise CannotConnect
             for result in group['results']:
                 if not isinstance(result,dict) or result.get('period_days') not in (1,7,30) or result.get('metric') not in METRICS or result.get('mode') not in ('measured','goal') or result.get('status') not in ('leading','tied_lead','not_leading','unknown'):
                     raise CannotConnect

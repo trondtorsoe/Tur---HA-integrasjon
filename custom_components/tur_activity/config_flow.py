@@ -76,6 +76,7 @@ class TurOptionsFlow(config_entries.OptionsFlow):
                 if name:aliases[gid]=name
                 else:aliases.pop(gid,None)
                 return self.async_create_entry(title='',data={**self.config_entry.options,'group_names':aliases})
-        choices=[selector.SelectOptionDict(value=gid,label=f"{aliases.get(gid,'Group')} · {gid[:8]}") for gid in sorted(available)]
+        names={g['group']:g.get('name') or 'Group' for g in groups}
+        choices=[selector.SelectOptionDict(value=gid,label=f"{aliases.get(gid,names[gid])} · {gid[:8]}") for gid in sorted(available)]
         schema=vol.Schema({vol.Required('group'):selector.SelectSelector(selector.SelectSelectorConfig(options=choices,mode=selector.SelectSelectorMode.DROPDOWN)),vol.Optional('name',default=''):selector.TextSelector()})
         return self.async_show_form(step_id='init',data_schema=schema,errors=errors)

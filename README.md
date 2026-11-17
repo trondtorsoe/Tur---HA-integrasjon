@@ -52,11 +52,11 @@ Enable **My leadership status per group** separately in Tur. Sensors cover **tod
 
 The states are **leading**, **tied lead**, **not leading** and **unknown / insufficient data**. Stale or missing competitor data gives unknown. Members without personal goals are excluded from the goal comparison; your own missing goal gives unknown.
 
-Only your status is exported. Groups use opaque identifiers in sensor names, not group or member names; rename the entities in Home Assistant if useful. One participating group can create up to 30 leadership sensors. Removed groups or withdrawn leadership permission make the associated sensors unavailable.
+Only your status is exported. Group names from the app are shown in sensor names; opaque group IDs remain the permanent identity. Other members’ names and figures are not exported. One participating group can create up to 30 leadership sensors. Removed groups or withdrawn leadership permission make the associated sensors unavailable.
 
 ## Readable group names
 
-Integration **0.20.1** lets you set local group names under **Settings → Devices & services → Tur → Options/configure** (the integration's cog button). Select the technical group ID and enter a name such as “Family”. Repeat for other groups. An empty name restores the ID. Names are not sent to the Tur server. Existing sensor unique IDs and automations are preserved.
+Integration **0.20.2b2** automatically uses group names from Tur and follows name changes without creating new entities. You can also set local group aliases under **Settings → Devices & services → Tur → Options/configure** (the integration's cog button). Select the technical group ID and enter a name such as “Family”. Repeat for other groups. An empty alias restores the name from the app (or the ID on older servers). Names are not sent to the Tur server. Existing sensor unique IDs and automations are preserved.
 
 Only the Home Assistant integration needs this update; no new Android app or server is required. Names do not change Unknown: comparisons require fresh data for every day of the period, and goal achievement requires your own goals. Missing data is not counted as zero.
 

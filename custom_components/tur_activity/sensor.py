@@ -90,7 +90,19 @@ class TurLeader(TurBase):
         self.gid,self.metric,self.mode,self.period=gid,metric,mode,period
         self._attr_unique_id=f'{entry.entry_id}_{gid}_{metric}_{mode}_{period}'
         self._attr_translation_key=f'leadership_{metric}_{mode}_{period}'
-        self._attr_translation_placeholders={'group':entry.options.get('group_names',{}).get(gid,gid[:8])}
+        self._group_alias=entry.options.get('group_names',{}).get(gid)
+    @property
+    def translation_placeholders(self):
+        if self._group_alias:
+            return {'group':self._group_alias}
+        for group in self.coordinator.data.get('leadership',{}).get('groups',[]):
+            if group['group']==self.gid and group.get('name'):
+                return {'group':group['name']}
+        return {'group':self.gid[:8]}
+    @callback
+    def _handle_coordinator_update(self):
+        self.__dict__.pop('name',None)
+        super()._handle_coordinator_update()
     def result(self):
         for group in self.coordinator.data.get('leadership',{}).get('groups',[]):
             if group['group']==self.gid:
@@ -109,4 +121,4 @@ class TurLeader(TurBase):
         return 'insufficient_data' if result['status']=='unknown' else result['status']
     @property
     def extra_state_attributes(self):
-        return dict(group_id=self.gid,period_days=self.period,metric=self.metric,comparison=self.mode,calculated=self.coordinator.data.get('leadership',{}).get('calculated'))
+        return dict(group_id=self.gid,group_name=self.translation_placeholders['group'],period_days=self.period,metric=self.metric,comparison=self.mode,calculated=self.coordinator.data.get('leadership',{}).get('calculated'))

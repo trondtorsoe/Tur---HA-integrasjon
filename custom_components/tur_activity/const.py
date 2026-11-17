@@ -5,4 +5,4 @@ CONF_KEY = 'sharing_key'
 FIELDS = ('steps', 'distance_km', 'activity_minutes', 'ascent_m', 'points', 'goal_percent')
 METRICS = ('steps', 'meters', 'ascent', 'activity_points', 'total_points')
 
-VERSION = '0.20.2b1'
+VERSION = '0.20.2b2'
