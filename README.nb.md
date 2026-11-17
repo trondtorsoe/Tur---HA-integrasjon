@@ -48,6 +48,12 @@ Status er **leder**, **delt ledelse**, **leder ikke** eller **ukjent / utilstrek
 
 Bare din status eksporteres. Grupper vises med tekniske identifikatorer i sensornavnene, uten gruppe- og personnavn; gi sensorene egne navn i Home Assistant om ønskelig. En gruppe kan opprette inntil 30 ledersensorer. Fjernede grupper eller trukket lederdeling gjør de tilhørende sensorene utilgjengelige.
 
+## Lesbare gruppenavn
+
+Integrasjon **0.20.1** lar deg velge lokale gruppenavn under **Innstillinger → Enheter og tjenester → Tur → Alternativer/konfigurer** (tannhjulet ved integrasjonen). Velg teknisk gruppe-ID og skriv ønsket navn, for eksempel «Familien». Gjenta for andre grupper. Tomt navn gjenoppretter ID-en. Navnet sendes ikke til Tur-serveren, og eksisterende sensor-ID-er og automasjoner beholdes.
+
+Dette krever bare oppdatering av Home Assistant-integrasjonen, ingen ny Android-app eller server. «Ukjent» endres ikke av navnevalget: en sammenligning krever ferske tall for alle dagene i perioden, og måloppnåelse krever egne mål. Manglende data regnes ikke som null.
+
 ## Nøkler og personvern
 
 - Nøkkelen gir bare lesetilgang til valgte tall, separat fra vanlig innlogging i appen.
@@ -60,7 +66,7 @@ Bare din status eksporteres. Grupper vises med tekniske identifikatorer i sensor
 
 ## Kontroller og begrensninger
 
-B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Sju integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering er kontrollert.
+B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Åtte integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering er kontrollert.
 
 Dette er automatiske kontroller. Installasjon på en testers fysiske telefon og Home Assistant-installasjon gjenstår å kontrollere. VPS-en må oppdateres med B8-pakken før det nye endepunktet kan brukes. Stabile 0.20-brukere tvinges ikke til å oppdatere for denne integrasjonen.
 

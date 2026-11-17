@@ -327,5 +327,23 @@
         }
       }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Group names in Home Assistant",
+        "description": "Choose a group and a local display name. Names stay in Home Assistant. An empty name restores the technical ID. Repeat for other groups. This does not change Unknown, which reflects comparison data.",
+        "data": {
+          "group": "Group",
+          "name": "Local group name"
+        }
+      }
+    },
+    "error": {
+      "invalid_name": "Choose a group and a name up to 80 characters."
+    },
+    "abort": {
+      "no_groups": "No groups received. Enable leadership sharing in Tur and synchronise first."
+    }
   }
 }

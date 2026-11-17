@@ -1,12 +1,14 @@
 {
   "domain": "tur_activity",
   "name": "Tur",
-  "codeowners": ["@trondtorsoe"],
+  "codeowners": [
+    "@trondtorsoe"
+  ],
   "config_flow": true,
   "documentation": "https://github.com/trondtorsoe/Tur---HA-integrasjon",
   "integration_type": "service",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/trondtorsoe/Tur---HA-integrasjon/issues",
   "requirements": [],
-  "version": "0.20.0b8"
+  "version": "0.20.1"
 }

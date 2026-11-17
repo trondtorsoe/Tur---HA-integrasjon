@@ -90,7 +90,7 @@ class TurLeader(TurBase):
         self.gid,self.metric,self.mode,self.period=gid,metric,mode,period
         self._attr_unique_id=f'{entry.entry_id}_{gid}_{metric}_{mode}_{period}'
         self._attr_translation_key=f'leadership_{metric}_{mode}_{period}'
-        self._attr_translation_placeholders={'group':gid[:8]}
+        self._attr_translation_placeholders={'group':entry.options.get('group_names',{}).get(gid,gid[:8])}
     def result(self):
         for group in self.coordinator.data.get('leadership',{}).get('groups',[]):
             if group['group']==self.gid:

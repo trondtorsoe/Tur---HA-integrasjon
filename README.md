@@ -48,6 +48,12 @@ The states are **leading**, **tied lead**, **not leading** and **unknown / insuf
 
 Only your status is exported. Groups use opaque identifiers in sensor names, not group or member names; rename the entities in Home Assistant if useful. One participating group can create up to 30 leadership sensors. Removed groups or withdrawn leadership permission make the associated sensors unavailable.
 
+## Readable group names
+
+Integration **0.20.1** lets you set local group names under **Settings → Devices & services → Tur → Options/configure** (the integration's cog button). Select the technical group ID and enter a name such as “Family”. Repeat for other groups. An empty name restores the ID. Names are not sent to the Tur server. Existing sensor unique IDs and automations are preserved.
+
+Only the Home Assistant integration needs this update; no new Android app or server is required. Names do not change Unknown: comparisons require fresh data for every day of the period, and goal achievement requires your own goals. Missing data is not counted as zero.
+
 ## Keys and privacy
 
 - The key grants read-only access to selected figures, separate from normal app login.
@@ -60,7 +66,7 @@ Only your status is exported. Groups use opaque identifiers in sensor names, not
 
 ## Verification and limitations
 
-B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Seven integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. APK signing and alignment are verified.
+B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Eight integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. APK signing and alignment are verified.
 
 These are automated checks. Installation on a tester's physical phone and their Home Assistant installation still needs verification. The VPS must receive the B8 package before the new endpoint can be used. Existing stable 0.20 users are not forced to update for this integration.
 

@@ -327,5 +327,23 @@
         }
       }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Gruppenavn i Home Assistant",
+        "description": "Velg gruppe og skriv et eget visningsnavn. Navnet lagres bare i Home Assistant. Tomt navn gjenoppretter teknisk ID. Gjenta for flere grupper. Dette endrer ikke «Ukjent», som skyldes datagrunnlaget.",
+        "data": {
+          "group": "Gruppe",
+          "name": "Lokalt gruppenavn"
+        }
+      }
+    },
+    "error": {
+      "invalid_name": "Velg en gruppe og et navn på maksimalt 80 tegn."
+    },
+    "abort": {
+      "no_groups": "Ingen grupper er mottatt. Aktiver lederdeling i Tur og synkroniser først."
+    }
   }
 }
