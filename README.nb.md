@@ -26,7 +26,7 @@ Krever **Home Assistant 2026.11.0 eller nyere**. Alternativt kopierer du bare `c
 
 ## Versjon og ikon
 
-Home Assistant-integrasjonen er fortsatt **beta**. Utgave **0.20.2b1** viser integrasjonens versjon under **Enhetsinformasjon → Programvare** og bruker Tur-appens ikon med føtter og stiplet linje. Dette er integrasjonens versjon, ikke Android-versjonen. Android B8 og eksisterende server kan beholdes.
+Home Assistant-integrasjonen er fortsatt **beta**. Utgave **0.20.2b3** viser integrasjonens versjon under **Enhetsinformasjon → Programvare** og bruker Tur-appens ikon med føtter og stiplet linje. Dette er integrasjonens versjon, ikke Android-versjonen. Android B8 og eksisterende server kan beholdes.
 
 Etter oppdatering eller ny nedlasting i Markedsplassen må Home Assistant startes på nytt for å laste ny kode. Last siden på nytt hvis nettleseren fortsatt viser gammelt ikon. Du trenger ikke slette integrasjonen, nøkkelen eller sensorene.
 
@@ -44,21 +44,21 @@ Etter oppdatering eller ny nedlasting i Markedsplassen må Home Assistant starte
 
 Appen sender ved vanlig synkronisering. **Send tall nå** finnes også på Home Assistant-siden. Home Assistant leser omtrent hvert femte minutt. Transport gir ikke aktivitetskreditt. Oppsett og sensornavn støtter norsk og engelsk; Home Assistant følger eget språkvalg.
 
-Tall som ikke er valgt, mangler, gjelder en tidligere dag eller er over seks timer gamle, blir **utilgjengelige**, ikke ferske nuller. Sist oppdatert vises fortsatt når tidspunktet finnes. Androids bakgrunnsbegrensninger og nettforbindelse kan forsinke sendingen.
+Fra **0.20.2b3** opprettes en ny aktivitetssensor først når en valgt, fersk verdi finnes. Målt null er gyldig; manglende verdi regnes ikke som null. Sensorer legges automatisk til når data kommer senere. Eksisterende sensorer blir **utilgjengelige** hvis tallene ikke lenger er valgt, mangler, gjelder en tidligere dag eller er over seks timer gamle. Entitets-ID, historikk og automasjoner beholdes. Sist oppdatert vises fortsatt når tidspunktet finnes. Androids bakgrunnsbegrensninger og nettforbindelse kan forsinke sendingen.
 
 ## Lederstatus
 
 Aktiver **Min lederstatus per gruppe** som eget valg i Tur. Sensorene dekker **i dag, siste 7 dager og siste 30 dager**, for **skritt, distanse, høyde, grunnpoeng og totalpoeng**. Målt aktivitet summeres for perioden; måloppnåelse sammenligner snitt av dagsprosentene, separat fra målt aktivitet.
 
-Status er **leder**, **delt ledelse**, **leder ikke** eller **ukjent / utilstrekkelige data**. Gamle eller manglende sammenligningstall gir ukjent. Medlemmer uten personlige mål utelates fra målsammenligningen; mangler du selv mål, blir din målstatus ukjent.
+Status er **leder**, **delt ledelse** eller **leder ikke**. En ny ledersensor opprettes først når sammenligningen er kjent og fersk. Ukjente sammenligninger oppretter ingen tomme entiteter. Eksisterende sensorer beholdes og blir **utilgjengelige** når sammenligningen midlertidig ikke kan beregnes. Medlemmer uten personlige mål utelates fra målsammenligningen; mangler du selv mål, opprettes ikke den målsensoren. Manglende tall gjettes ikke.
 
-Bare din status eksporteres. Grupper vises med tekniske identifikatorer i sensornavnene, uten gruppe- og personnavn; gi sensorene egne navn i Home Assistant om ønskelig. En gruppe kan opprette inntil 30 ledersensorer. Fjernede grupper eller trukket lederdeling gjør de tilhørende sensorene utilgjengelige.
+Bare din status eksporteres. Gruppenavnet fra appen vises i sensornavnet; teknisk gruppe-ID er den faste identiteten. Andres personnavn og tall eksporteres ikke. En gruppe kan opprette inntil 30 ledersensorer. Fjernede grupper eller trukket lederdeling gjør de tilhørende sensorene utilgjengelige.
 
 ## Lesbare gruppenavn
 
-Integrasjon **0.20.1** lar deg velge lokale gruppenavn under **Innstillinger → Enheter og tjenester → Tur → Alternativer/konfigurer** (tannhjulet ved integrasjonen). Velg teknisk gruppe-ID og skriv ønsket navn, for eksempel «Familien». Gjenta for andre grupper. Tomt navn gjenoppretter ID-en. Navnet sendes ikke til Tur-serveren, og eksisterende sensor-ID-er og automasjoner beholdes.
+Fra **0.20.2b2** brukes gruppenavn fra Tur automatisk, også ved navneendring, uten nye entiteter. Du kan fortsatt velge egne lokale gruppenavn under **Innstillinger → Enheter og tjenester → Tur → Alternativer/konfigurer** (tannhjulet ved integrasjonen). Velg teknisk gruppe-ID og skriv ønsket navn, for eksempel «Familien». Gjenta for andre grupper. Tomt lokalt navn bruker navnet fra appen (eller ID-en med eldre server). Navnet sendes ikke til Tur-serveren, og eksisterende sensor-ID-er og automasjoner beholdes.
 
-Dette krever bare oppdatering av Home Assistant-integrasjonen, ingen ny Android-app eller server. «Ukjent» endres ikke av navnevalget: en sammenligning krever ferske tall for alle dagene i perioden, og måloppnåelse krever egne mål. Manglende data regnes ikke som null.
+Endringen i hvilke sensorer som opprettes, krever bare **0.20.2b3** av Home Assistant-integrasjonen, ingen ny app eller server. Automatiske gruppenavn krever B9-eksporten på serveren. Sammenligninger krever ferske tall for alle dagene i perioden, og måloppnåelse krever egne mål. Eksisterende registrerte entiteter beholdes. Ønsker du en ren entitetsliste, kan du fjerne og legge til integrasjonen etter oppdatering og omstart av Home Assistant. Ny oppretting kan endre entitets-ID-er som brukes i automasjoner.
 
 ## Nøkler og personvern
 
@@ -72,10 +72,10 @@ Dette krever bare oppdatering av Home Assistant-integrasjonen, ingen ny Android-
 
 ## Kontroller og begrensninger
 
-B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Ni integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering er kontrollert.
+B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Elleve integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering ble kontrollert for B8. De nye integrasjonskontrollene dekker tom førstegangsinstallasjon, gyldige nuller kontra manglende verdier, senere sensoroppretting, delvis sammenligningshistorikk, uendrede ID-er ved navneendring og gjenoppretting av registrerte utilgjengelige sensorer ved ny lasting.
 
 **Bekreftet i faktisk bruk 17.11.2026:** En tester mottar løpende tall fra sin Android-app via Tur-serveren til sin Home Assistant. Sensorlisten viser skritt, distanse, aktivitetstid, høyde, poeng, måloppnåelse og oppdateringstid. Dagens lederstatus mottas for flere målinger, med Leder, Leder ikke og Delt ledelse, og måloppnåelse vises separat fra målt aktivitet.
 
-Dette bekrefter overføring og visning. Samsvar med tallene i Tur, sammenligninger for 7/30 dager, årsaken til hver Ukjent-status, endrede delingsvalg, nøkkelbytte/tilbakekall, omstart og lokale gruppenavn er ikke manuelt bekreftet av testeren ennå. Automatiske kontroller av flere av disse funksjonene er omtalt ovenfor. Stabile 0.20-brukere tvinges ikke til å oppdatere.
+Også bekreftet i faktisk bruk: ikon og gruppenavn fra appen, nøkkelbytte, sperring av gammel nøkkel og separat tilbakekall. Samsvar med tallene i Tur, sammenligninger for 7/30 dager, endrede delingsvalg, automatisk sensoroppretting når manglende data kommer, bevaring av entiteter/historikk ved omstart eller navneendring og lokale gruppenavn er ikke manuelt bekreftet av testeren ennå. Automatiske kontroller av flere av disse funksjonene er omtalt ovenfor. Stabile 0.20-brukere tvinges ikke til å oppdatere.
 
 Se også [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).

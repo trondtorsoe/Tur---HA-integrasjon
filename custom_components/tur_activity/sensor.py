@@ -3,6 +3,7 @@ from datetime import datetime,timezone
 from zoneinfo import ZoneInfo
 from homeassistant.components.sensor import SensorEntity,SensorDeviceClass,SensorStateClass
 from homeassistant.const import UnitOfLength,UnitOfTime,PERCENTAGE
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.core import callback
@@ -29,21 +30,30 @@ def fresh(data):
 
 async def async_setup_entry(hass,entry,async_add_entities):
     coordinator=hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([TurSensor(coordinator,entry,key) for key in (*FIELDS,'updated')])
+    registry=er.async_get(hass)
     added=set()
     @callback
-    def add_leadership():
+    def add_ready_entities():
+        data=coordinator.data
+        candidates=[TurSensor(coordinator,entry,key) for key in (*FIELDS,'updated')]
+        if 'leadership' in data['fields']:
+            for group in data.get('leadership',{}).get('groups',[]):
+                for result in group['results']:
+                    candidates.append(TurLeader(coordinator,entry,group['group'],
+                        result['metric'],result['mode'],result['period_days']))
         new=[]
-        for group in coordinator.data.get('leadership',{}).get('groups',[]):
-            gid=group['group']
-            for result in group['results']:
-                key=(gid,result['metric'],result['mode'],result['period_days'])
-                if key not in added:
-                    added.add(key);new.append(TurLeader(coordinator,entry,*key))
+        for entity in candidates:
+            uid=entity.unique_id
+            # Restore registered entities after a reload even if their data is
+            # temporarily missing. Never create a new unknown placeholder.
+            registered=registry.async_get_entity_id('sensor',DOMAIN,uid) is not None
+            if uid not in added and (registered or entity.available):
+                added.add(uid)
+                new.append(entity)
         if new:
             async_add_entities(new)
-    add_leadership()
-    entry.async_on_unload(coordinator.async_add_listener(add_leadership))
+    add_ready_entities()
+    entry.async_on_unload(coordinator.async_add_listener(add_ready_entities))
 
 class TurBase(CoordinatorEntity,SensorEntity):
     _attr_has_entity_name=True
@@ -110,15 +120,16 @@ class TurLeader(TurBase):
         return None
     @property
     def available(self):
-        return super().available and 'leadership' in self.coordinator.data['fields'] and self.result() is not None
+        result=self.result()
+        return (super().available and 'leadership' in self.coordinator.data['fields']
+                and fresh(self.coordinator.data) and result is not None
+                and result['status'] in ('leading','tied_lead','not_leading'))
     @property
     def native_value(self):
         result=self.result()
         if not self.available:
             return None
-        if not fresh(self.coordinator.data):
-            return 'insufficient_data'
-        return 'insufficient_data' if result['status']=='unknown' else result['status']
+        return result['status']
     @property
     def extra_state_attributes(self):
         return dict(group_id=self.gid,group_name=self.translation_placeholders['group'],period_days=self.period,metric=self.metric,comparison=self.mode,calculated=self.coordinator.data.get('leadership',{}).get('calculated'))

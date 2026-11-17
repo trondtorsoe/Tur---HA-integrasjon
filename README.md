@@ -26,7 +26,7 @@ Requires **Home Assistant 2026.11.0 or newer**. Alternatively, copy only `custom
 
 ## Version and icon
 
-The Home Assistant integration remains **beta**. Version **0.20.2b1** displays the integration version under **Device info → Firmware** and ships Tur's footprints-and-dotted-line icon. This is the integration version, not the Android version. Android B8 and the existing server remain compatible.
+The Home Assistant integration remains **beta**. Version **0.20.2b3** displays the integration version under **Device info → Firmware** and ships Tur's footprints-and-dotted-line icon. This is the integration version, not the Android version. Android B8 and the existing server remain compatible.
 
 After updating or downloading again through Marketplace, restart Home Assistant to load the new code. Refresh the page if your browser still shows the old icon. Do not delete the integration, key or sensors.
 
@@ -44,13 +44,13 @@ After updating or downloading again through Marketplace, restart Home Assistant 
 
 The app sends a snapshot during normal synchronisation; **Send figures now** is also available on its Home Assistant page. Home Assistant reads approximately every five minutes. Transport is excluded from activity credit. The setup and sensor names support English and Norwegian; Home Assistant selects its own language.
 
-Unselected, missing, previous-day or more than six-hour-old activity data becomes **unavailable**, not a fresh zero. Last updated remains visible when available. Android background and network restrictions can delay uploads.
+From **0.20.2b3**, a new activity sensor is created only after a selected, fresh, non-null value arrives. A genuine zero is valid. Sensors are added automatically on later updates, so there is no need to reinstall when new data becomes available. Existing sensors become **unavailable** when their data is unselected, missing, from a previous day or more than six hours old; they are retained to preserve entity IDs, history and automations. Last updated remains visible when available. Android background and network restrictions can delay uploads.
 
 ## Leadership status
 
 Enable **My leadership status per group** separately in Tur. Sensors cover **today, the last 7 days and the last 30 days**, for **steps, distance, elevation, base points and total points**. Measured activity sums the period; goal achievement compares the average daily percentages, separately from measured activity.
 
-The states are **leading**, **tied lead**, **not leading** and **unknown / insufficient data**. Stale or missing competitor data gives unknown. Members without personal goals are excluded from the goal comparison; your own missing goal gives unknown.
+The states are **leading**, **tied lead** and **not leading**. A new leadership sensor is created only when its comparison is known and fresh; unknown comparisons do not create placeholder entities. Existing sensors become **unavailable** while their comparison cannot be calculated. Members without personal goals are excluded from goal comparisons; your own missing goal prevents that comparison. No missing value is treated as zero.
 
 Only your status is exported. Group names from the app are shown in sensor names; opaque group IDs remain the permanent identity. Other members’ names and figures are not exported. One participating group can create up to 30 leadership sensors. Removed groups or withdrawn leadership permission make the associated sensors unavailable.
 
@@ -58,7 +58,7 @@ Only your status is exported. Group names from the app are shown in sensor names
 
 Integration **0.20.2b2** automatically uses group names from Tur and follows name changes without creating new entities. You can also set local group aliases under **Settings → Devices & services → Tur → Options/configure** (the integration's cog button). Select the technical group ID and enter a name such as “Family”. Repeat for other groups. An empty alias restores the name from the app (or the ID on older servers). Names are not sent to the Tur server. Existing sensor unique IDs and automations are preserved.
 
-Only the Home Assistant integration needs this update; no new Android app or server is required. Names do not change Unknown: comparisons require fresh data for every day of the period, and goal achievement requires your own goals. Missing data is not counted as zero.
+The new entity-creation behaviour requires only this Home Assistant integration update; no new Android app or server is required. Automatic app group names require the B9 server export. Comparisons require fresh data for every day of the period, and goal achievement requires your own goals. Existing registered entities are retained; for a clean entity list, remove and re-add the integration after updating its code and restarting Home Assistant. Re-adding can change entity IDs used by automations.
 
 ## Keys and privacy
 
@@ -72,10 +72,10 @@ Only the Home Assistant integration needs this update; no new Android app or ser
 
 ## Verification and limitations
 
-B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Nine integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. APK signing and alignment are verified.
+B8 passes **216 server tests**, **14 database/menu tests**, **20 Android Java regression suites** and **three web rendering suites**. Eleven integration tests run against **actual Home Assistant 2026.11**, a local HTTPS server and the Tur server implementation. They cover setup and sensors, own leadership, missing/stale data, scope changes, key replacement/revocation, malformed responses and redirects. The b3 checks include empty first installation, valid zeros versus missing values, later sensor creation, partial comparison history, no duplicate IDs, group renames, and restoration of registered unavailable sensors on reload. APK signing and alignment are verified.
 
 **Confirmed in real use on 17 November 2026:** A tester receives ongoing figures from their Android app through the Tur server into their Home Assistant. Their sensor list displays steps, distance, activity time, ascent, points, goal achievement and update time. Today's leadership is received for several metrics, including Leading, Not leading and Tied lead, separately for goal achievement and measured activity.
 
-This confirms transfer and display. Agreement with Tur's figures, 7/30-day comparisons, the reason for each Unknown state, sharing-choice changes, key rotation/revocation, restart and local group aliases have not yet been manually confirmed by the tester. Automated checks for several of these are described above. Existing stable 0.20 users are not forced to update.
+Also confirmed in real use: the icon and app group names, key replacement, rejection of the previous key, and explicit revocation. Agreement with Tur's figures, 7/30-day comparisons, sharing-choice changes, automatic creation when missing data arrives, entity/history preservation across restart or group rename, and local group aliases have not yet been manually confirmed by the tester. Automated checks for several of these are described above. Existing stable 0.20 users are not forced to update.
 
 See also [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).
