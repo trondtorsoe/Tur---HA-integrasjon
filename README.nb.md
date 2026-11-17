@@ -2,7 +2,7 @@
 
 [English](README.md) | [Norsk](README.nb.md)
 
-> **BETA — under utvikling, ikke et gjennomtestet produkt. Krever Tur Android 0.20 B8 og server oppdatert med B8-pakken.**
+> **BETA — under utvikling, ikke et gjennomtestet produkt. Gjeldende stabil app/server er Tur 0.21. Integrasjonen er 0.20.2b3 og er kontrollert mot 0.21. Minimum for grunnleggende deling er fortsatt B8; automatiske gruppenavn krever B9 eller nyere server.**
 
 Vis egne godkjente aktivitetstall og lederstatus fra Tur i Home Assistant. Integrasjonen leser via Tur-serveren; du trenger ikke åpne hjemmenettet for inngående trafikk.
 
@@ -16,7 +16,7 @@ Vis egne godkjente aktivitetstall og lederstatus fra Tur i Home Assistant. Integ
 
 ## Kom i gang
 
-1. Oppdater Tur-serveren med B8-pakken, og installer **Tur 0.20 B8** over eksisterende Android-app. Ikke avinstaller først.
+1. Bruk gjeldende stabile **Tur 0.21** og oppdatert Tur-server. [Last ned Android-appen](https://tur.fjernkontroll.eu/Tur.apk), eller bruk appens oppdateringssjekk. Installer over eksisterende app, ikke avinstaller først. Administrator kan oppdatere serveren med signert `tur-oppdater.py` under **Administrasjon → Serveroppdatering** i telefonappen; PC-skript er et alternativ.
 2. Åpne **Grupper og deling → Home Assistant** i Tur. Appen spør ved behov om oppretting/tilkobling av Tur-konto; ingen gruppe er nødvendig.
 3. Velg tall og trykk **Opprett nøkkel**. Kopier nøkkelen og behandle den som et passord.
 4. Åpne **Innstillinger → Markedsplass → Legg til fra lenke** (engelsk: **Settings → Marketplace → Add from link**). Lim inn `https://github.com/trondtorsoe/Tur---HA-integrasjon` og velg **Legg til**. Velg **Integrasjon** hvis du blir spurt. Markedsplassen veileder deg gjennom GitHub-tilkobling ved behov. Åpne **Tur Home Assistant (Beta)** og velg **Installer**. Følg eventuell beskjed om omstart.
@@ -26,7 +26,7 @@ Krever **Home Assistant 2026.11.0 eller nyere**. Alternativt kopierer du bare `c
 
 ## Versjon og ikon
 
-Home Assistant-integrasjonen er fortsatt **beta**. Utgave **0.20.2b3** viser integrasjonens versjon under **Enhetsinformasjon → Programvare** og bruker Tur-appens ikon med føtter og stiplet linje. Dette er integrasjonens versjon, ikke Android-versjonen. Android B8 og eksisterende server kan beholdes.
+Home Assistant-integrasjonen er fortsatt **beta**. Utgave **0.20.2b3** viser integrasjonens versjon under **Enhetsinformasjon → Programvare** og bruker Tur-appens ikon med føtter og stiplet linje. Dette er integrasjonens versjon, ikke Android-versjonen. Utgaven er kontrollert mot stabil Android/server 0.21. Grunnleggende deling er bakoverkompatibel med B8; automatiske gruppenavn krever B9 eller nyere server. Appens stabile versjon gjør ikke HA-integrasjonen til en stabil utgivelse.
 
 Etter oppdatering eller ny nedlasting i Markedsplassen må Home Assistant startes på nytt for å laste ny kode. Last siden på nytt hvis nettleseren fortsatt viser gammelt ikon. Du trenger ikke slette integrasjonen, nøkkelen eller sensorene.
 
@@ -72,10 +72,10 @@ Endringen i hvilke sensorer som opprettes, krever bare **0.20.2b3** av Home Assi
 
 ## Kontroller og begrensninger
 
-B8 består **216 servertester**, **14 database-/menytester**, **20 Android-regresjonssuiter** og **tre tester av nettvisningene**. Elleve integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og Tur-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. APK-signatur og filjustering ble kontrollert for B8. De nye integrasjonskontrollene dekker tom førstegangsinstallasjon, gyldige nuller kontra manglende verdier, senere sensoroppretting, delvis sammenligningshistorikk, uendrede ID-er ved navneendring og gjenoppretting av registrerte utilgjengelige sensorer ved ny lasting.
+For stabil Tur 0.21 bestod **217 servertester**, **14 Android database-/menytester** og Android Java-regresjoner med 129 søkeoppføringer og alle 56 tips. Elleve integrasjonstester kjører mot **ekte Home Assistant 2026.11**, lokal HTTPS-server og 0.21-serverkoden. De dekker oppsett og sensorer, egen lederstatus, manglende/gamle tall, endrede delingsvalg, nøkkelbytte/tilbakekall, ugyldige svar og videresendinger. Kontrollene inkluderer tom førstegangsinstallasjon, gyldige nuller kontra manglende verdier, senere sensoroppretting, delvis sammenligningshistorikk, uendrede ID-er ved navneendring og gjenoppretting av registrerte utilgjengelige sensorer ved ny lasting. APK-signatur, filjustering og serveroppdateringens signatur er kontrollert. Dette erstatter ikke fysisk test av alle funksjoner.
 
 **Bekreftet i faktisk bruk 17.11.2026:** En tester mottar løpende tall fra sin Android-app via Tur-serveren til sin Home Assistant. Sensorlisten viser skritt, distanse, aktivitetstid, høyde, poeng, måloppnåelse og oppdateringstid. Dagens lederstatus mottas for flere målinger, med Leder, Leder ikke og Delt ledelse, og måloppnåelse vises separat fra målt aktivitet.
 
-Også bekreftet i faktisk bruk: ikon og gruppenavn fra appen, nøkkelbytte, sperring av gammel nøkkel og separat tilbakekall. Samsvar med tallene i Tur, sammenligninger for 7/30 dager, endrede delingsvalg, automatisk sensoroppretting når manglende data kommer, bevaring av entiteter/historikk ved omstart eller navneendring og lokale gruppenavn er ikke manuelt bekreftet av testeren ennå. Automatiske kontroller av flere av disse funksjonene er omtalt ovenfor. Stabile 0.20-brukere tvinges ikke til å oppdatere.
+Også bekreftet i faktisk bruk: ikon og gruppenavn fra appen, nøkkelbytte, sperring av gammel nøkkel, separat tilbakekall, samsvar med tallene i Tur og endrede delingsvalg. Brukeren bekreftet også at nye tomme entiteter med ukjente verdier ikke dukket opp. Sammenligninger for 7/30 dager, automatisk sensoroppretting når manglende data kommer, bevaring av entiteter/historikk ved omstart eller navneendring og lokale gruppenavn er ikke manuelt bekreftet ennå. Automatiske kontroller av flere av disse funksjonene er omtalt ovenfor. Oppdatering fra tidligere stabil 0.20 til 0.21 skjer uten avinstallering.
 
 Se også [Tur for Android](https://github.com/trondtorsoe/Tur-Activity-Tracker-for-Android).
