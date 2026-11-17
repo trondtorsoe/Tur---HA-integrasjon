@@ -13,7 +13,7 @@ Bare arbeid som inngår i neste beta beskrives her. / Only work actively include
 
 ## ![Mål / Goals](icons/target.svg) Egen lederstatus / Personal leadership status
 
-**Status: spesifisert, ikke implementert eller testet. / Specified, not implemented or tested.**
+**Status: beregningsmodul kodet lokalt; ti beregningstester passerer. Delingsvalg og HA-sensorer er ikke ferdige. / Calculation module implemented locally; ten calculation tests pass. Sharing controls and HA sensors are incomplete.**
 
 **Norsk**
 - Eget frivillig delingsvalg.
